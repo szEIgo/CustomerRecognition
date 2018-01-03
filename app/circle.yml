@@ -1,0 +1,20 @@
+machine:
+  python:
+    version: 3.5.2
+
+name: corporate-web
+description: |
+    corporate-web
+version: %VERSION%
+category: AllUnite
+maintainer: ala@allunite.com
+projectURL: http://allunite.com
+
+dependencies:
+  override:
+    - pip install -r requirements.txt
+
+
+test:
+  override:
+    - nosetests tests/

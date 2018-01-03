@@ -1,0 +1,11 @@
+/videos
+./idea
+/frames
+
+*.mp4
+*.webm
+*.jpg
+*.png
+.vagrant
+
+/.vagrant

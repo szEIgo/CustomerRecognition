@@ -1,0 +1,28 @@
+version: '2'
+catalog:
+  name: allunite-practice
+  version: %VERSION%
+  description: corporate-web
+  minimum_rancher_version: v1.3.0
+  questions:
+    - variable: LB_HOSTNAME
+      label: LoadBalancer Hostname
+      required: true
+      default: allunite.com,www.allunite.com
+      type: string
+    - variable: EXPOSE_PORT
+      label: Port to expose at Rancher host
+      required: true
+      default: 2181, 7203, 9092, 5672, 15672
+      type: int
+
+services:
+  corporate-web:
+    scale: 2
+    health_check:
+      port: 3000
+      request_line: GET /healthcheck HTTP/1.0
+      interval: 5000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      strategy: recreate

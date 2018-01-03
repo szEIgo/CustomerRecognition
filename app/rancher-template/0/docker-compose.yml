@@ -1,0 +1,14 @@
+allunite-practice:
+  image: %IMAGE%
+  ports:
+    - ${EXPOSE_PORT}:3000
+  labels:
+    io.rancher.container.pull_image: always
+    traefik.enable: true
+    traefik.frontend.rule: Host:${LB_HOSTNAME}
+    traefik.frontend.passHostHeader: true
+    traefik.port: ${EXPOSE_PORT}
+  environment:
+    - 'CONFIGO_SOURCE_0={"type": "consul", "address": "consul.consul.rancher.internal:8500", "prefix": "corporate-web"}'
+    - CONFIGO_LOG_LEVEL=DEBUG
+    - CONFIGO_UPPERCASE_KEYS=0
